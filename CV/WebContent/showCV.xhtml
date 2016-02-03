@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+	<ui:composition template="/template/layout.xhtml">
+		<ui:define name="content">
+			<div>
+				<h:outputText value="#{cvControler.getCv().owner.familyName} 
+					#{cvControler.getCv().owner.firstName}"/>
+				<br /><h:outputText value="#{cvControler.getCv().owner.mail}"/>
+				<br /><h:outputText value="#{cvControler.getCv().owner.website}"/>
+				<br /><h:outputText value="#{cvControler.getCv().owner.birthDate}" >
+						<f:convertDateTime pattern="dd-MM-yyyy" />
+					</h:outputText>
+			</div>
+			<ui:repeat var="type" value="#{cvControler.getTypes()}">
+				<div>
+					<h3>#{messageProvider.getValue(type)}</h3>
+					<ui:repeat value="#{cvControler.getActivities(type)}" var="activity">
+						<p>
+						<h:outputText value="#{activity.year} #{activity.title}" />
+						<br /><span class="marge"><h:outputText value="#{activity.description}" escape="false" /></span>
+						</p>
+					</ui:repeat>
+				</div>
+			</ui:repeat>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd"
+    version="2.1">
+	<managed-bean>
+		<managed-bean-name>usersManager</managed-bean-name>
+		<managed-bean-class>web.UsersManager</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>userManager</managed-bean-name>
+		<managed-bean-class>web.UserManager</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+    <managed-bean>
+    	<managed-bean-name>messageProvider</managed-bean-name>
+    	<managed-bean-class>web.MessageProvider</managed-bean-class>
+    	<managed-bean-scope>application</managed-bean-scope>
+    </managed-bean>
+    
+	 <!-- Configuration -->
+    <application>
+        <resource-bundle>
+            <base-name>resources.application</base-name>
+            <var>msg</var>
+        </resource-bundle>
+        <locale-config>
+            <default-locale>en</default-locale>
+            <supported-locale>fr</supported-locale>
+        </locale-config>
+    </application>
+</faces-config>

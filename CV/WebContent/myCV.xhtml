@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+	<ui:composition template="/template/layout.xhtml">
+		<ui:define name="content">
+			<h:form accept-charset="UTF-8" enctype="charset=UTF-8">
+				<ui:repeat value="#{cvControler.getCv().getActivities()}" var="activity"
+					varStatus="loop">
+					<h:panelGrid columns="2" border="0">
+						<h:outputLabel value="#{messageProvider.getValue('label.title')}" />
+						<h:inputText value="#{activity.title}" />
+
+						<h:outputLabel value="#{messageProvider.getValue('label.year')}" />
+						<h:inputText value="#{activity.year}" />
+
+						<h:outputText value="#{messageProvider.getValue('label.type')}" />
+						<h:selectOneMenu value="#{activity.type}" required="false">
+							<f:selectItems value="#{cvControler.getTypes()}" />
+						</h:selectOneMenu>
+
+						<h:outputLabel value="#{messageProvider.getValue('label.webAddress')}" />
+						<h:inputText value="#{activity.webAddress}" />
+
+						<h:outputLabel
+							value="#{messageProvider.getValue('label.description')}" />
+						<p:editor value="#{activity.description}" />
+						
+						<h:panelGroup>
+							<h:commandButton action="#{cvControler.removeActivity(activity)}"
+								value="#{messageProvider.getValue('button.remove')}"/>
+						</h:panelGroup>
+					</h:panelGrid>
+					<br />
+				</ui:repeat>
+				<h:commandButton action="#{cvControler.newActivity()}"
+					value="#{messageProvider.getValue('button.newActivity')}" />
+				<h:commandButton action="#{cvControler.show(cvControler.getCv())}"
+					value="#{messageProvider.getValue('button.show')}" />
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
