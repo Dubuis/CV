@@ -5,13 +5,11 @@ import java.util.List;
 
 import javax.ejb.Stateful;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import business.dao.IDao;
 import business.dao.JpaDao;
+import business.model.Activity;
 import business.model.Person;
 import web.services.interfaces.IConnectedUser;
-import business.model.Activity;
 
 @Stateful(name = "ConnectedUser")
 public class ConnectedUser extends AbstractEJB implements IConnectedUser {

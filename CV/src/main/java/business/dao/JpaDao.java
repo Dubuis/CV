@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TransactionRequiredException;
-import javax.persistence.metamodel.EntityType;
 
 import org.springframework.stereotype.Service;
 
@@ -18,24 +17,13 @@ public class JpaDao implements IDao {
 	private EntityManager em;
 	
 	public JpaDao() {
-		super();
 		emf = Persistence.createEntityManagerFactory("CV");
 		em = emf.createEntityManager();
-		for(EntityType e : em.getMetamodel().getEntities()) {
-			System.out.println(e.getName());
-		}
 	}
 	
 	@Override
 	public boolean save(Object entity) {
-		try {
-			em.persist(entity);
-		} catch (EntityExistsException
-				| IllegalArgumentException
-				| TransactionRequiredException e) {
-			e.printStackTrace();
-			return false;
-		}
+		em.persist(entity);
 		return true;
 	}
 
@@ -44,14 +32,7 @@ public class JpaDao implements IDao {
 		boolean[] booleans = new boolean[entities.length];
 		for(int i = 0 ; i < entities.length ; i++) {
 			booleans[i] = true;
-			try {
-				em.persist(entities[i]);
-			} catch (EntityExistsException
-					| IllegalArgumentException e) {
-				e.printStackTrace();
-				booleans[i] = false;
-			}
-			
+			em.persist(entities[i]);
 		}
 		return booleans;
 	}
@@ -90,13 +71,7 @@ public class JpaDao implements IDao {
 
 	@Override
 	public boolean remove(Object entity) {
-		try {
-			em.remove(entity);
-		} catch (IllegalArgumentException
-				| TransactionRequiredException e) {
-			e.printStackTrace();
-			return false;
-		}
+		em.remove(entity);
 		return true;
 	}
 
@@ -105,13 +80,7 @@ public class JpaDao implements IDao {
 		boolean[] booleans = new boolean[entities.length];
 		for(int i = 0 ; i < entities.length ; i++) {
 			booleans[i] = true;
-			try {
-				em.remove(entities[i]);
-			} catch (IllegalArgumentException
-					| TransactionRequiredException e) {
-				e.printStackTrace();
-				booleans[i] =  false;
-			}
+			em.remove(entities[i]);
 		}
 		return booleans;
 	}

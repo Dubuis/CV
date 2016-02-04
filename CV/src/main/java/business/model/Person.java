@@ -6,7 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
@@ -23,7 +22,6 @@ public class Person {
 	@Column(nullable=false)
 	private String password;
 	@ElementCollection
-	@JoinColumn(name="Person")
 	private List<Activity> activities;
 	
 	/**

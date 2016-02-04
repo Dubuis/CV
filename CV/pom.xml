@@ -29,7 +29,7 @@
 
 	<properties>
 		<spring.version>4.2.2.RELEASE</spring.version>
-		<hibernate.version>5.0.3.Final</hibernate.version>
+		<hibernate.version>5.0.7.Final</hibernate.version>
 		<jsf.version>2.0.3</jsf.version>
 		<primefaces.version>3.0.M4</primefaces.version>
 		<mysql.version>5.1.38</mysql.version>
@@ -52,11 +52,19 @@
 		</resources>
 		<plugins>
 			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.3</version>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.5</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -67,16 +75,9 @@
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
-
-			<plugin>
-				<groupId>org.apache.openejb.maven</groupId>
-				<artifactId>tomee-maven-plugin</artifactId>
-				<version>1.7.1</version>
-				<configuration>
-					<tomeeVersion>1.7.1</tomeeVersion>
-					<tomeeClassifier>plus</tomeeClassifier>
-				</configuration>
-			</plugin>
+			<!-- <plugin> <groupId>org.apache.openejb.maven</groupId> <artifactId>tomee-maven-plugin</artifactId> 
+				<version>1.7.1</version> <configuration> <tomeeVersion>1.7.1</tomeeVersion> 
+				<tomeeClassifier>plus</tomeeClassifier> </configuration> </plugin> -->
 		</plugins>
 	</build>
 
@@ -96,22 +97,12 @@
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 		</dependency>
-		<dependency>
-			<groupId>javax.annotation</groupId>
-			<artifactId>jsr250-api</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.persistence</groupId>
-			<artifactId>persistence-api</artifactId>
-			<version>1.0.2</version>
-		</dependency>
+		<!-- JSF Dependencies -->
 		<dependency>
 			<groupId>javax.ejb</groupId>
-			<artifactId>javax.ejb-api</artifactId>
-			<version>3.2</version>
+			<artifactId>ejb-api</artifactId>
+			<version>3.0</version>
 		</dependency>
-		<!-- JSF Dependencies -->
 		<dependency>
 			<groupId>com.sun.faces</groupId>
 			<artifactId>jsf-api</artifactId>
@@ -142,65 +133,19 @@
 		<!-- Hibernate dependencies -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>5.0.7.Final</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>5.0.7.Final</version>
+			<version>${hibernate.version}</version>
+		</dependency>
+		<!-- Jpa -->
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.1-api</artifactId>
+			<version>1.0.0.Final</version>
 		</dependency>
 		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>5.2.3.Final</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-annotations</artifactId>
-			<version>3.5.6-Final</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-ehcache</artifactId>
-			<version>5.0.7.Final</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-ehcache</artifactId>
-			<version>5.0.7.Final</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-c3p0</artifactId>
-			<version>5.0.7.Final</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate.common</groupId>
-			<artifactId>hibernate-commons-annotations</artifactId>
-			<version>5.0.1.Final</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-jpamodelgen</artifactId>
-			<version>5.0.7.Final</version>
-		</dependency>
-		<!-- MySql -->
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.6</version>
-		</dependency>
-		<!-- Open EJB -->
-		<dependency>
-			<groupId>org.apache.openejb</groupId>
-			<artifactId>openejb-core</artifactId>
-			<version>4.7.3</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.openejb</groupId>
-			<artifactId>javaee-api</artifactId>
-			<version>6.0-6</version>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.1.0.Final</version>
 		</dependency>
 	</dependencies>
 </project>

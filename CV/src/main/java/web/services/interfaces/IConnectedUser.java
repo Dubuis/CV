@@ -3,10 +3,9 @@ package web.services.interfaces;
 import java.util.List;
 
 import javax.ejb.Local;
-import javax.ejb.Remote;
 
-import business.model.Person;
 import business.model.Activity;
+import business.model.Person;
 
 @Local
 public interface IConnectedUser {

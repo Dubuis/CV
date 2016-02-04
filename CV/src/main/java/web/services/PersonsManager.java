@@ -5,17 +5,16 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
+import business.dao.IDao;
+import business.dao.JpaDao;
+import business.model.Activity;
 import business.model.Person;
 import web.services.interfaces.IPersons;
-import business.dao.IDao;
-import business.model.Activity;
 
 @Stateless
 public class PersonsManager extends AbstractEJB implements IPersons {
-	@Autowired
-	IDao dao;
+	//@Autowired
+	IDao dao = new JpaDao();
 	
 	private List<String> connectedUsers;
 	
