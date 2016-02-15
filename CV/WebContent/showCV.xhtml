@@ -13,18 +13,12 @@
 	<ui:composition template="/template/layout.xhtml">
 		<ui:define name="content">
 			<div>
-				<h:outputText value="#{cvControler.getCv().owner.familyName} 
-					#{cvControler.getCv().owner.firstName}"/>
-				<br /><h:outputText value="#{cvControler.getCv().owner.mail}"/>
-				<br /><h:outputText value="#{cvControler.getCv().owner.website}"/>
-				<br /><h:outputText value="#{cvControler.getCv().owner.birthDate}" >
-						<f:convertDateTime pattern="dd-MM-yyyy" />
-					</h:outputText>
+				<br /><h:outputText value="#{userManager.getEmail()}"/>
 			</div>
-			<ui:repeat var="type" value="#{cvControler.getTypes()}">
+			<ui:repeat var="type" value="#{userManager.getTypes()}">
 				<div>
 					<h3>#{messageProvider.getValue(type)}</h3>
-					<ui:repeat value="#{cvControler.getActivities(type)}" var="activity">
+					<ui:repeat value="#{userManager.getActivities(type)}" var="activity">
 						<p>
 						<h:outputText value="#{activity.year} #{activity.title}" />
 						<br /><span class="marge"><h:outputText value="#{activity.description}" escape="false" /></span>

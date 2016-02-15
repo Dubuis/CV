@@ -1,9 +1,14 @@
 package web;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import business.model.Activity;
+import business.model.Activity.ActivityType;
 import web.services.interfaces.IConnectedUser;
 import web.services.interfaces.IPersons;
 
@@ -54,5 +59,37 @@ public class UserManager {
 	public void logout() {
 		System.out.println("connectedUser : " + connectedUser);
 	}
-	// TODO
+	
+
+	public List<Activity> getCV() {
+		if(connectedUser.getLogged() != null) {
+			return connectedUser.getActivities();
+		}
+		return null;
+	}
+	
+	public String getEmail() {
+		if(connectedUser.getLogged() != null) {
+			return connectedUser.getLogged().getMail();
+		}
+		return null;
+	}
+	
+	public List<ActivityType> getTypes() {
+		List<ActivityType> l = new ArrayList<ActivityType>();
+		for(ActivityType a : Activity.ActivityType.values()) {
+			l.add(a);
+		}
+		return l;
+	}
+	
+	public List<Activity> getActivities(ActivityType type) {
+		List<Activity> l = new ArrayList<Activity>();
+		for(Activity a : connectedUser.getActivities()) {
+			if(a.getType().equals(type)) {
+				l.add(a);
+			}
+		}
+		return l;
+	}
 }

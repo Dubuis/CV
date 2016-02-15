@@ -11,7 +11,7 @@
 	<ui:composition template="/template/layout.xhtml">
 		<ui:define name="content">
 			<h:form accept-charset="UTF-8" enctype="charset=UTF-8">
-				<ui:repeat value="#{cvControler.getCv().getActivities()}" var="activity"
+				<ui:repeat value="#{userManager.getCV()}" var="activity"
 					varStatus="loop">
 					<h:panelGrid columns="2" border="0">
 						<h:outputLabel value="#{messageProvider.getValue('label.title')}" />
@@ -39,10 +39,8 @@
 					</h:panelGrid>
 					<br />
 				</ui:repeat>
-				<h:commandButton action="#{cvControler.newActivity()}"
+				<h:commandButton action="#{userManager.newActivity()}"
 					value="#{messageProvider.getValue('button.newActivity')}" />
-				<h:commandButton action="#{cvControler.show(cvControler.getCv())}"
-					value="#{messageProvider.getValue('button.show')}" />
 			</h:form>
 		</ui:define>
 	</ui:composition>
