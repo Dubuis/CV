@@ -10,7 +10,7 @@
 <h:body>
 	<ui:composition template="/template/layout.xhtml">
 		<ui:define name="content">
-			<ui:repeat var="#{usersManager.persons.getPersons()}" value="p" varStatus="loop">
+			<ui:repeat var="#{usersManager.getPersonsWithCV()}" value="p" varStatus="loop">
 				<h:outputText value="#{p.mail}"></h:outputText>
 			</ui:repeat>
 		</ui:define>
