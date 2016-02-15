@@ -29,7 +29,7 @@
 
 	<properties>
 		<spring.version>4.2.2.RELEASE</spring.version>
-		<hibernate.version>5.0.7.Final</hibernate.version>
+		<hibernate.version>5.0.3.Final</hibernate.version>
 		<jsf.version>2.0.3</jsf.version>
 		<primefaces.version>3.0.M4</primefaces.version>
 		<mysql.version>5.1.38</mysql.version>

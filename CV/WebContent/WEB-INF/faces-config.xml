@@ -7,8 +7,12 @@
     version="2.1">
 	<application>
 		<message-bundle>application</message-bundle>
+		<message-bundle>resources.application</message-bundle>
 		<locale-config>
 			<supported-locale>fr_FR</supported-locale>
+		</locale-config>
+		<locale-config>
+			<default-locale>en</default-locale>
 		</locale-config>
 	</application>
 	<managed-bean>
