@@ -11,7 +11,7 @@
 
 		<!-- Classes -->
 		<class>business.model.Person</class>
-		<class>business.model.Activity</class>
+		
 
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
@@ -21,7 +21,7 @@
 
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
 			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.hbm2ddl.auto" value="drop-and-create" />
+			<property name="hibernate.hbm2ddl.auto" value="validate" />
 		</properties>
 	</persistence-unit>
 </persistence>

@@ -13,11 +13,11 @@
 	<ui:composition template="/template/layout.xhtml">
 		<ui:define name="content">
 			<div>
-				<br /><h:outputText value="#{userManager.getEmail()}"/>
+				<br /><h:outputText value="#{userManager.connectedUser.logged.email}"/>
 			</div>
-			<ui:repeat var="type" value="#{userManager.getTypes()}">
+			<ui:repeat var="type" value="#{cvManager.getTypes()}">
 				<div>
-					<h3>#{messageProvider.getValue(type)}</h3>
+					<h3><h:outputText value="#{msg[type]"/></h3>
 					<ui:repeat value="#{userManager.getActivities(type)}" var="activity">
 						<p>
 						<h:outputText value="#{activity.year} #{activity.title}" />

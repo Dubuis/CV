@@ -19,7 +19,7 @@ public class Activity {
 	@Column(nullable=false)
 	@Enumerated(EnumType.STRING)
 	private ActivityType type;
-	@Column(nullable=false, unique=true)
+	@Column(nullable=false)
 	@NotNull
 	private String title;
 	@Column(nullable=true)

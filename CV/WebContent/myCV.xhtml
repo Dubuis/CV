@@ -14,33 +14,39 @@
 				<ui:repeat value="#{userManager.getCV()}" var="activity"
 					varStatus="loop">
 					<h:panelGrid columns="2" border="0">
-						<h:outputLabel value="#{messageProvider.getValue('label.title')}" />
+						<h:outputLabel value="#{msg['label.title']}" />
 						<h:inputText value="#{activity.title}" />
 
-						<h:outputLabel value="#{messageProvider.getValue('label.year')}" />
-						<h:inputText value="#{activity.year}" />
+						<h:outputLabel value="#{msg['label.date']}" />
+						<h:inputText value="#{activity.date}" >
+							<f:convertDateTime pattern="yyyy-MM-dd"/> 
+						</h:inputText>
 
-						<h:outputText value="#{messageProvider.getValue('label.type')}" />
+						<h:outputText value="#{msg['label.type']}" />
 						<h:selectOneMenu value="#{activity.type}" required="false">
-							<f:selectItems value="#{cvControler.getTypes()}" />
+							<f:selectItems value="#{cvManager.getTypes()}" var="type" itemLabel="#{msg[type]}" itemValue="type"/>
 						</h:selectOneMenu>
 
-						<h:outputLabel value="#{messageProvider.getValue('label.webAddress')}" />
+						<h:outputLabel value="#{msg['label.webAddress']}" />
 						<h:inputText value="#{activity.webAddress}" />
 
 						<h:outputLabel
-							value="#{messageProvider.getValue('label.description')}" />
+							value="#{msg['label.description']}" />
 						<p:editor value="#{activity.description}" />
 						
 						<h:panelGroup>
-							<h:commandButton action="#{cvControler.removeActivity(activity)}"
-								value="#{messageProvider.getValue('button.remove')}"/>
+							<h:commandButton action="#{userManager.loggedUser.removeActivity(activity)}"
+								value="#{msg['button.remove']}"/>
+							<h:commandButton action="#{userManager.loggedUser.addActivity(activity)}"
+								value="#{msg['button.save']}"/>
 						</h:panelGroup>
 					</h:panelGrid>
 					<br />
 				</ui:repeat>
+			</h:form>
+			<h:form>
 				<h:commandButton action="#{userManager.newActivity()}"
-					value="#{messageProvider.getValue('button.newActivity')}" />
+					value="#{msg['button.newActivity']}" />
 			</h:form>
 		</ui:define>
 	</ui:composition>

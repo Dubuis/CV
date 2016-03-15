@@ -7,7 +7,6 @@
     version="2.1">
 	<application>
 		<message-bundle>application</message-bundle>
-		<message-bundle>resources.application</message-bundle>
 		<locale-config>
 			<supported-locale>fr_FR</supported-locale>
 		</locale-config>
@@ -25,6 +24,11 @@
 		<managed-bean-class>web.UserManager</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>cvManager</managed-bean-name>
+		<managed-bean-class>web.CvManager</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+	</managed-bean>
     <managed-bean>
     	<managed-bean-name>messageProvider</managed-bean-name>
     	<managed-bean-class>web.MessageProvider</managed-bean-class>
@@ -34,7 +38,7 @@
 	 <!-- Configuration -->
     <application>
         <resource-bundle>
-            <base-name>resources.application</base-name>
+            <base-name>application</base-name>
             <var>msg</var>
         </resource-bundle>
         <message-bundle>application</message-bundle>

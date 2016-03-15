@@ -64,6 +64,9 @@ public class ConnectedUser extends AbstractEJB implements IConnectedUser {
 		if(activities == null) {
 			activities = new ArrayList<Activity>();
 		}
+		if(activities.contains(activity)) {
+			activities.remove(activity);
+		}
 		activities.add(activity);
 	}
 
