@@ -27,14 +27,6 @@
 		</developer>
 	</developers>
 
-	<properties>
-		<spring.version>4.2.2.RELEASE</spring.version>
-		<hibernate.version>5.0.3.Final</hibernate.version>
-		<jsf.version>2.0.3</jsf.version>
-		<primefaces.version>3.0.M4</primefaces.version>
-		<mysql.version>5.1.38</mysql.version>
-	</properties>
-
 	<build>
 		<resources>
 			<resource>
@@ -97,6 +89,19 @@
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 		</dependency>
+		
+		<!-- BDD -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-dbcp2</artifactId>
+			<version>2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.6</version>
+		</dependency>
+		
 		<!-- JSF Dependencies -->
 		<dependency>
 			<groupId>javax.ejb</groupId>
@@ -113,35 +118,33 @@
 			<artifactId>jsf-impl</artifactId>
 			<version>2.1.7</version>
 		</dependency>
+		
 		<!-- PrimeFaces dependencies -->
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
-			<version>${primefaces.version}</version>
+			<version>3.0.M4</version>
 		</dependency>
+		
 		<!-- Spring dependencies -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-			<version>${spring.version}</version>
+			<version>4.2.2.RELEASE</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
+		
 		<!-- Hibernate dependencies -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>${hibernate.version}</version>
+			<version>4.0.1.Final</version>
 		</dependency>
-		<!-- Jpa -->
 		<dependency>
-			<groupId>org.hibernate.javax.persistence</groupId>
-			<artifactId>hibernate-jpa-2.1-api</artifactId>
-			<version>1.0.0.Final</version>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>4.0.1.Final</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
