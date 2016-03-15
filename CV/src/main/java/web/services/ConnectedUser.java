@@ -9,6 +9,7 @@ import business.dao.IDao;
 import business.dao.JpaDao;
 import business.model.Activity;
 import business.model.Person;
+import business.model.Activity.ActivityType;
 import web.services.interfaces.IConnectedUser;
 
 @Stateful(name = "ConnectedUser")
@@ -80,13 +81,27 @@ public class ConnectedUser extends AbstractEJB implements IConnectedUser {
 		}
 		return logged.getActivities().remove(activity);
 	}
-
+	
 	@Override
 	public List<Activity> getActivities() {
 		if(logged == null) {
 			return null;
 		}
 		return logged.getActivities();
+	}
+	
+	@Override
+	public List<Activity> getActivities(ActivityType type) {
+		if(logged == null) {
+			return null;
+		}
+		ArrayList<Activity> list = new ArrayList<Activity>();
+		for(Activity a : logged.getActivities()) {
+			if(a.getType().equals(type)) {
+				list.add(a);
+			}
+		}
+		return list;
 	}
 
 	@Override

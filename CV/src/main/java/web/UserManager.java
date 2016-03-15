@@ -94,8 +94,4 @@ public class UserManager {
 		activity.setDate(new Date(System.currentTimeMillis()));
 		connectedUser.addActivity(activity);
 	}
-	
-	public void save() {
-		connectedUser.save();
-	}
 }

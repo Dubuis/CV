@@ -24,7 +24,7 @@
 
 						<h:outputText value="#{msg['label.type']}" />
 						<h:selectOneMenu value="#{activity.type}" required="false">
-							<f:selectItems value="#{cvManager.getTypes()}" var="type" itemLabel="#{msg[type]}" itemValue="type"/>
+							<f:selectItems value="#{cvManager.getTypes()}" var="type" itemLabel="#{msg[type]}" itemValue="#{type}"/>
 						</h:selectOneMenu>
 
 						<h:outputLabel value="#{msg['label.webAddress']}" />
@@ -35,9 +35,9 @@
 						<p:editor value="#{activity.description}" />
 						
 						<h:panelGroup>
-							<h:commandButton action="#{userManager.loggedUser.removeActivity(activity)}"
+							<h:commandButton action="#{userManager.connectedUser.removeActivity(activity)}"
 								value="#{msg['button.remove']}"/>
-							<h:commandButton action="#{userManager.loggedUser.addActivity(activity)}"
+							<h:commandButton action="#{userManager.connectedUser.addActivity(activity)}"
 								value="#{msg['button.save']}"/>
 						</h:panelGroup>
 					</h:panelGrid>
@@ -45,6 +45,8 @@
 				</ui:repeat>
 			</h:form>
 			<h:form>
+				<h:commandButton action="#{userManager.connectedUser.save()}"
+					value="#{msg['button.save']}" />
 				<h:commandButton action="#{userManager.newActivity()}"
 					value="#{msg['button.newActivity']}" />
 			</h:form>

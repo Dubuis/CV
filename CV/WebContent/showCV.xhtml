@@ -5,7 +5,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
 </h:head>
@@ -13,16 +14,24 @@
 	<ui:composition template="/template/layout.xhtml">
 		<ui:define name="content">
 			<div>
-				<br /><h:outputText value="#{userManager.connectedUser.logged.email}"/>
+				<br /><h:outputText value="#{userManager.connectedUser.logged.mail}"/>
 			</div>
 			<ui:repeat var="type" value="#{cvManager.getTypes()}">
 				<div>
-					<h3><h:outputText value="#{msg[type]"/></h3>
-					<ui:repeat value="#{userManager.getActivities(type)}" var="activity">
-						<p>
-						<h:outputText value="#{activity.year} #{activity.title}" />
-						<br /><span class="marge"><h:outputText value="#{activity.description}" escape="false" /></span>
-						</p>
+					<h3><h:outputText value="#{msg[type]}"/></h3>
+					<ui:repeat value="#{userManager.connectedUser.getActivities(type)}" var="activity">
+						<div>
+							<p>
+								<h:outputText value="#{activity.date}">
+									<f:convertDateTime pattern="yyyy"/> 
+								</h:outputText>
+								<h:outputText value="   " />
+								<h:outputText value="#{activity.title}" />
+								<p class="descriptionActivity">
+									<h:outputText value="#{activity.description}" escape="false" />
+								</p>
+							</p>
+						</div>
 					</ui:repeat>
 				</div>
 			</ui:repeat>
