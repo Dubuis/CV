@@ -10,9 +10,15 @@
 <h:body>
 	<ui:composition template="/template/layout.xhtml">
 		<ui:define name="content">
-			<ui:repeat var="#{usersManager.getPersonsWithCV()}" value="p" varStatus="loop">
-				<h:outputText value="#{p.mail}"></h:outputText>
+			<ul>
+			<ui:repeat value="#{allPersonsManager.personsWithCv}" var="p" varStatus="loop">
+				<li>
+					<h:link value="#{p.mail}" outcome="showCV?faces-redirect=true" includeViewParams="true">
+						<ui:param name="mail" value="#{p.mail}" />
+					</h:link>
+				</li>
 			</ui:repeat>
+			</ul>
 		</ui:define>
 	</ui:composition>
 </h:body>

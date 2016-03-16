@@ -10,26 +10,26 @@
 <h:head>
 </h:head>
 <h:body>
-	<c:if test="#{empty userManager.connectedUser.logged}">
+	<c:if test="#{loginManager.isNotConnected()}">
 		<h:form>
 			<h:panelGrid columns="2" cellpadding="5">
 				<h:outputLabel for="login" value="Login :" />
-				<p:inputText id="login" value="#{userManager.id}"
+				<p:inputText id="login" value="#{loginManager.id}"
 					required="true" label="login" />
 	
 				<h:outputLabel for="password" value="Password:" />
-				<p:password id="password" value="#{userManager.pwd}"
+				<p:password id="password" value="#{loginManager.pwd}"
 					required="true" label="password" />
 			</h:panelGrid>
-			<h:commandButton action="#{userManager.login()}"
+			<h:commandButton action="#{loginManager.login()}"
 				value="#{msg['button.connection']}"
 				style="float:left;" />
 		</h:form>
 	</c:if>
-	<c:if test="#{not empty userManager.connectedUser.logged}">
-		<h:outputLabel value="#{userManager.connectedUser.logged.mail}"/>
+	<c:if test="#{loginManager.isConnected()}">
+		<h:outputLabel value="#{loginManager.connectedUser.logged.mail}"/>
 		<h:form>
-			<h:commandButton action="#{userManager.logout()}"
+			<h:commandButton action="#{loginManager.logout()}"
 				value="#{msg['button.disconnection']}" />
 		</h:form>
 	</c:if>

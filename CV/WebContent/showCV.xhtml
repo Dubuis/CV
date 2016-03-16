@@ -10,16 +10,19 @@
 
 <h:head>
 </h:head>
+<f:metadata>
+	<f:viewParam name="mail" value="#{cvManager.mail}" />
+</f:metadata>
 <h:body>
 	<ui:composition template="/template/layout.xhtml">
 		<ui:define name="content">
 			<div>
-				<br /><h:outputText value="#{userManager.connectedUser.logged.mail}"/>
+				<br /><h:outputText value="#{cvManager.mail}"/>
 			</div>
 			<ui:repeat var="type" value="#{cvManager.getTypes()}">
 				<div>
 					<h3><h:outputText value="#{msg[type]}"/></h3>
-					<ui:repeat value="#{userManager.connectedUser.getActivities(type)}" var="activity">
+					<ui:repeat value="#{cvManager.getActivities(type)}" var="activity">
 						<div>
 							<p>
 								<h:outputText value="#{activity.date}">
