@@ -1,23 +1,39 @@
 package web;
 
-import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import java.util.Date;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
+import business.model.Activity;
 import web.services.interfaces.IConnectedUser;
 import web.services.interfaces.IPersons;
 
-@ManagedBean
-@SessionScoped
 public class LoginManager {
-	@EJB
 	IConnectedUser connectedUser;
-	
-	@EJB
 	IPersons persons; // For check if current isn't already connected 
 	
 	private String id;
 	private String pwd;
+	
+	public LoginManager(IConnectedUser connectedUser, IPersons persons) {
+		super();
+		this.connectedUser = connectedUser;
+		this.persons = persons;
+	}
+	
+	@PostConstruct
+	public void init() {
+		System.out.println(this + " created");
+	}
+	
+	@PreDestroy
+	public void close() {
+		System.out.println("\nINFO : ");
+		System.out.println("connectedUSer.logged : " + connectedUser.getLogged());
+		System.out.println();
+		System.out.println(this + " destroyer");
+	}
 	
 	public String getId() {
 		return id;
@@ -49,5 +65,12 @@ public class LoginManager {
 	}
 	public void logout() {
 		connectedUser.logout();
+	}
+
+	public void newActivity() {
+		System.out.println(connectedUser.getLogged());
+		Activity activity = new Activity();
+		activity.setDate(new Date(System.currentTimeMillis()));
+		connectedUser.addActivity(activity);
 	}
 }

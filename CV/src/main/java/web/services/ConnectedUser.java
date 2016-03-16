@@ -3,16 +3,18 @@ package web.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.ejb.Stateful;
 
 import business.dao.IDao;
 import business.dao.JpaDao;
 import business.model.Activity;
-import business.model.Person;
 import business.model.Activity.ActivityType;
+import business.model.Person;
 import web.services.interfaces.IConnectedUser;
 
-@Stateful(name = "ConnectedUser")
+@Stateful
 public class ConnectedUser extends AbstractEJB implements IConnectedUser {
 	//@Autowired
 	IDao dao = new JpaDao();
@@ -25,6 +27,16 @@ public class ConnectedUser extends AbstractEJB implements IConnectedUser {
 	
 	public void test() {
 		System.out.println(dao != null);
+	}
+	
+	@PostConstruct
+	public void init() {
+		System.out.println(this + " created");
+	}
+	
+	@PreDestroy
+	public void close() {
+		System.out.println(this + " destroy");
 	}
 	
 	@Override

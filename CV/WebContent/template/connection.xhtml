@@ -10,26 +10,26 @@
 <h:head>
 </h:head>
 <h:body>
-	<c:if test="#{loginManager.isNotConnected()}">
+	<c:if test="#{sessionSupervisor.loginManager.isNotConnected()}">
 		<h:form>
 			<h:panelGrid columns="2" cellpadding="5">
 				<h:outputLabel for="login" value="Login :" />
-				<p:inputText id="login" value="#{loginManager.id}"
+				<p:inputText id="login" value="#{sessionSupervisor.loginManager.id}"
 					required="true" label="login" />
 	
 				<h:outputLabel for="password" value="Password:" />
-				<p:password id="password" value="#{loginManager.pwd}"
+				<p:password id="password" value="#{sessionSupervisor.loginManager.pwd}"
 					required="true" label="password" />
 			</h:panelGrid>
-			<h:commandButton action="#{loginManager.login()}"
+			<h:commandButton action="#{sessionSupervisor.loginManager.login()}"
 				value="#{msg['button.connection']}"
 				style="float:left;" />
 		</h:form>
 	</c:if>
-	<c:if test="#{loginManager.isConnected()}">
-		<h:outputLabel value="#{loginManager.connectedUser.logged.mail}"/>
+	<c:if test="#{sessionSupervisor.loginManager.isConnected()}">
+		<h:outputLabel value="#{sessionSupervisor.connectedUser.logged.mail}"/>
 		<h:form>
-			<h:commandButton action="#{loginManager.logout()}"
+			<h:commandButton action="#{sessionSupervisor.loginManager.logout()}"
 				value="#{msg['button.disconnection']}" />
 		</h:form>
 	</c:if>

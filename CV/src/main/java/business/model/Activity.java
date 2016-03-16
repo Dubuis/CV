@@ -14,7 +14,7 @@ public class Activity {
 		professional_experience, skill, training, other 
 	}
 	
-	@Column(nullable=false)
+	@Column(nullable=true)
 	private Date date;
 	@Column(nullable=false)
 	@Enumerated(EnumType.STRING)

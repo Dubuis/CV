@@ -37,4 +37,8 @@ public class AllPersonsManager {
 		}
 		return personsWithCv;
 	}
+	
+	public Person getPerson(String id) {
+		return persons.getPerson(id);
+	}
 }

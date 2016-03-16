@@ -11,7 +11,7 @@
 	<ui:composition template="/template/layout.xhtml">
 		<ui:define name="content">
 			<h:form accept-charset="UTF-8" enctype="charset=UTF-8">
-				<ui:repeat value="#{userManager.getCV()}" var="activity"
+				<ui:repeat value="#{sessionSupervisor.loginManager.connectedUser.logged.getActivities()}" var="activity"
 					varStatus="loop">
 					<h:panelGrid columns="2" border="0">
 						<h:outputLabel value="#{msg['label.title']}" />
@@ -35,9 +35,9 @@
 						<p:editor value="#{activity.description}" />
 						
 						<h:panelGroup>
-							<h:commandButton action="#{userManager.connectedUser.removeActivity(activity)}"
+							<h:commandButton action="#{sessionSupervisor.connectedUser.removeActivity(activity)}"
 								value="#{msg['button.remove']}"/>
-							<h:commandButton action="#{userManager.connectedUser.addActivity(activity)}"
+							<h:commandButton action="#{sessionSupervisor.connectedUser.addActivity(activity)}"
 								value="#{msg['button.save']}"/>
 						</h:panelGroup>
 					</h:panelGrid>
@@ -45,9 +45,9 @@
 				</ui:repeat>
 			</h:form>
 			<h:form>
-				<h:commandButton action="#{userManager.connectedUser.save()}"
+				<h:commandButton action="#{sessionSupervisor.connectedUser.save()}"
 					value="#{msg['button.save']}" />
-				<h:commandButton action="#{userManager.newActivity()}"
+				<h:commandButton action="#{sessionSupervisor.cvManager.newActivity()}"
 					value="#{msg['button.newActivity']}" />
 			</h:form>
 		</ui:define>

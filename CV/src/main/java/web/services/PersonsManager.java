@@ -3,6 +3,8 @@ package web.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.ejb.Stateless;
 
 import business.dao.IDao;
@@ -21,6 +23,16 @@ public class PersonsManager extends AbstractEJB implements IPersons {
 	public PersonsManager() {
 		super();
 		connectedUsers = new ArrayList<String>();
+	}
+	
+	@PostConstruct
+	public void init() {
+		System.out.println(this + " created");
+	}
+	
+	@PreDestroy
+	public void close() {
+		System.out.println(this + " destroy");
 	}
 
 	@Override
