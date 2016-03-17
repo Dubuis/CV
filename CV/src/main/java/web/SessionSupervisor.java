@@ -1,9 +1,13 @@
 package web;
 
+import java.io.IOException;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 
 import web.services.interfaces.IConnectedUser;
 import web.services.interfaces.IPersons;
@@ -67,12 +71,13 @@ public class SessionSupervisor {
 		this.connectedUser = connectedUser;
 	}
 	
-	public String indexIfNotConnected() {
+	public String indexIfNotConnected() throws IOException {
 		if(connectedUser.getLogged() == null) {
-			System.out.println("redirect");
-			return "index?faces-redirect=true"; 
+			ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+            context.redirect("index.xhtml");
+            System.out.println("redirected");
 		}
-		System.out.println("connected");
+		else System.out.println("connected");
 		return "";
 	}
 }

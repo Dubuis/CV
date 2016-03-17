@@ -12,7 +12,6 @@
 <h:body>
 	<ui:composition template="/template/layout.xhtml">
 		<ui:define name="content">
-			<c:if test="#{sessionSupervisor.indexIfNotConnected()}">
 				<h:form accept-charset="UTF-8" enctype="charset=UTF-8">
 					<ui:repeat value="#{sessionSupervisor.loginManager.connectedUser.logged.getActivities()}" var="activity"
 						varStatus="loop">
@@ -51,8 +50,10 @@
 					<h:commandButton action="#{sessionSupervisor.cvManager.newActivity()}"
 						value="#{msg['button.newActivity']}" />
 				</h:form>
-			</c:if>
 		</ui:define>
 	</ui:composition>
+	<f:metadata>
+     	<f:event type="preRenderView" listener="#{sessionSupervisor.indexIfNotConnected()}"/>
+	</f:metadata>
 </h:body>
 </html>
