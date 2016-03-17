@@ -5,8 +5,6 @@ import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-import business.dao.IDao;
-import business.dao.JpaDao;
 import business.model.Activity;
 import business.model.Person;
 import web.services.interfaces.IConnectedUser;
@@ -38,19 +36,21 @@ public class RegistrationManager {
 		System.out.println(this + " destroyer");
 	}
 	
-	public void addPerson (){
+	public String addPerson (){
 		System.out.println("bonjour");
 		if(connectedUser.getLogged() != null) {
-			return;
+			return "";
 		}
-		if (persons.getPerson(id) == null) return;
+		//if (persons.getPerson(id) == null) return;
 		if(pwd.equals(pwd2)){
 			Person P1 = new Person();
 			P1.setMail(id);
 			P1.setPassword(pwd);
 			System.out.println(pwd+" | "+id);
 			persons.addPerson(P1);
+			return "index?faces-redirect=true";
 		}
+		return "index?faces-redirect=true";
 	}
 	
 	public String getId() {
