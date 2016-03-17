@@ -40,9 +40,10 @@ public class RegistrationManager {
 	
 	public void addPerson (){
 		System.out.println("bonjour");
-		if(connectedUser.getLogged() == null) {
+		if(connectedUser.getLogged() != null) {
 			return;
 		}
+		if (persons.getPerson(id) == null) return;
 		if(pwd.equals(pwd2)){
 			Person P1 = new Person();
 			P1.setMail(id);
