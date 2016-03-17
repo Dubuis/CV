@@ -12,7 +12,7 @@
     <ul>
     	<li><h:form><h:commandButton action="index?faces-redirect=true" value="#{msg['link.index']}" /></h:form></li> 
     	<c:if test="#{sessionSupervisor.loginManager.isConnected()}">
-    		<li><h:form><h:commandButton action="myCV?faces-redirect=true" value="#{msg['link.myCV']}" /></h:form></li>
+    		<li><h:form><h:commandButton action="#{sessionSupervisor.redirectMyCv()}" value="#{msg['link.myCV']}" /></h:form></li>
     		<li><h:form><h:commandButton action="myAccount?faces-redirect=true" value="#{msg['link.account']}" /></h:form></li>
     		<li><h:form><h:commandButton action="showCV?faces-redirect=true" value="#{msg['link.showCV']}"/></h:form></li>
     	</c:if>

@@ -80,4 +80,8 @@ public class SessionSupervisor {
 		else System.out.println("connected");
 		return "";
 	}
+	
+	public String redirectMyCv() {
+		return "myCV?faces-redirect=true";
+	}
 }
