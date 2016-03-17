@@ -22,8 +22,7 @@
 					required="true" label="password" />
 			</h:panelGrid>
 			<h:commandButton action="#{sessionSupervisor.loginManager.login()}"
-				value="#{msg['button.connection']}"
-				style="float:left;" />
+				value="#{msg['button.connection']}"/>
 		</h:form>
 	</c:if>
 	<c:if test="#{sessionSupervisor.loginManager.isConnected()}">

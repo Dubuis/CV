@@ -37,16 +37,19 @@ public class PersonsManager extends AbstractEJB implements IPersons {
 
 	@Override
 	public List<Person> getPersons() {
+		dao.refresh(dao.findAll(Person.class).toArray());
 		return dao.findAll(Person.class);
 	}
 
 	@Override
 	public Person getPerson(String id) {
+		dao.refresh(dao.find(Person.class, id));
 		return dao.find(Person.class, id);
 	}
 
 	@Override
 	public List<Activity> getActivities(String id) {
+		dao.refresh(dao.find(Person.class, id));
 		return dao.find(Person.class, id).getActivities();
 	}
 

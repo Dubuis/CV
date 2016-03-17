@@ -5,51 +5,53 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
-
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+</h:head>
 <h:body>
 	<ui:composition template="/template/layout.xhtml">
 		<ui:define name="content">
-			<h:form accept-charset="UTF-8" enctype="charset=UTF-8">
-				<ui:repeat value="#{sessionSupervisor.loginManager.connectedUser.logged.getActivities()}" var="activity"
-					varStatus="loop">
-					<h:panelGrid columns="2" border="0">
-						<h:outputLabel value="#{msg['label.title']}" />
-						<h:inputText value="#{activity.title}" />
-
-						<h:outputLabel value="#{msg['label.date']}" />
-						<h:inputText value="#{activity.date}" >
-							<f:convertDateTime pattern="yyyy-MM-dd"/> 
-						</h:inputText>
-
-						<h:outputText value="#{msg['label.type']}" />
-						<h:selectOneMenu value="#{activity.type}" required="false">
-							<f:selectItems value="#{cvManager.getTypes()}" var="type" itemLabel="#{msg[type]}" itemValue="#{type}"/>
-						</h:selectOneMenu>
-
-						<h:outputLabel value="#{msg['label.webAddress']}" />
-						<h:inputText value="#{activity.webAddress}" />
-
-						<h:outputLabel
-							value="#{msg['label.description']}" />
-						<p:editor value="#{activity.description}" />
-						
-						<h:panelGroup>
-							<h:commandButton action="#{sessionSupervisor.connectedUser.removeActivity(activity)}"
-								value="#{msg['button.remove']}"/>
-							<h:commandButton action="#{sessionSupervisor.connectedUser.addActivity(activity)}"
-								value="#{msg['button.save']}"/>
-						</h:panelGroup>
-					</h:panelGrid>
-					<br />
-				</ui:repeat>
-			</h:form>
-			<h:form>
-				<h:commandButton action="#{sessionSupervisor.connectedUser.save()}"
-					value="#{msg['button.save']}" />
-				<h:commandButton action="#{sessionSupervisor.cvManager.newActivity()}"
-					value="#{msg['button.newActivity']}" />
-			</h:form>
+			<c:if test="#{sessionSupervisor.indexIfNotConnected()}">
+				<h:form accept-charset="UTF-8" enctype="charset=UTF-8">
+					<ui:repeat value="#{sessionSupervisor.loginManager.connectedUser.logged.getActivities()}" var="activity"
+						varStatus="loop">
+						<h:panelGrid columns="2" border="0">
+							<h:outputLabel value="#{msg['label.title']}" />
+							<h:inputText value="#{activity.title}" />
+	
+							<h:outputLabel value="#{msg['label.date']}" />
+							<h:inputText value="#{activity.date}" >
+								<f:convertDateTime pattern="yyyy-MM-dd"/> 
+							</h:inputText>
+	
+							<h:outputText value="#{msg['label.type']}" />
+							<h:selectOneMenu value="#{activity.type}" required="false">
+								<f:selectItems value="#{cvManager.getTypes()}" var="type" itemLabel="#{msg[type]}" itemValue="#{type}"/>
+							</h:selectOneMenu>
+	
+							<h:outputLabel value="#{msg['label.webAddress']}" />
+							<h:inputText value="#{activity.webAddress}" />
+	
+							<h:outputLabel
+								value="#{msg['label.description']}" />
+							<p:editor value="#{activity.description}" />
+							
+							<h:panelGroup>
+								<h:commandButton action="#{sessionSupervisor.connectedUser.removeActivity(activity)}"
+									value="#{msg['button.remove']}"/>
+								<h:commandButton action="#{sessionSupervisor.cvManager.addActivity(activity)}"
+									value="#{msg['button.save']}"/>
+							</h:panelGroup>
+						</h:panelGrid>
+						<br />
+					</ui:repeat>
+				</h:form>
+				<h:form>
+					<h:commandButton action="#{sessionSupervisor.cvManager.newActivity()}"
+						value="#{msg['button.newActivity']}" />
+				</h:form>
+			</c:if>
 		</ui:define>
 	</ui:composition>
 </h:body>

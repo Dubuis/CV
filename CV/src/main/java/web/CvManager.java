@@ -84,4 +84,12 @@ public class CvManager implements Serializable {
 		Activity newActivity = new Activity();
 		connectedUser.addActivity(newActivity);
 	}
+	
+	public void addActivity(Activity a) {
+		if(connectedUser.getLogged() == null) {
+			return;
+		}
+		connectedUser.addActivity(a);
+		connectedUser.save();
+	}
 }

@@ -66,4 +66,13 @@ public class SessionSupervisor {
 	public void setConnectedUser(IConnectedUser connectedUser) {
 		this.connectedUser = connectedUser;
 	}
+	
+	public String indexIfNotConnected() {
+		if(connectedUser.getLogged() == null) {
+			System.out.println("redirect");
+			return "index?faces-redirect=true"; 
+		}
+		System.out.println("connected");
+		return "";
+	}
 }
