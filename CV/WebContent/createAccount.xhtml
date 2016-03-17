@@ -10,26 +10,30 @@
 <h:head>
 </h:head>
 <h:body>
-		<h:form>
-			<h:panelGrid columns="2" cellpadding="5">
-				<h:outputLabel for="login" value="Login :" />
-				<p:inputText id="login" value="#{sessionSupervisor.registrationManager.id}"
-					required="true" label="login" />
-	
-				<h:outputLabel for="password" value="Password:" />
-				<p:password id="password" value="#{sessionSupervisor.registrationManager.pwd}"
-					required="true" label="password" />
-					
-				<h:outputLabel for="password2" value="Password:" />
-				<p:password id="password2" value="#{sessionSupervisor.registrationManager.pwd2}"
-					required="true" label="password2" />
-					
-			</h:panelGrid>
-			<h:commandButton action="#{sessionSupervisor.registrationManager.addPerson()}"
-				value="#{msg['button.registration']}"/>
-		</h:form>
-		<f:metadata>
-     		<f:event type="preRenderView" listener="#{sessionSupervisor.indexIfConnected()}"/>
-		</f:metadata>
+	<ui:composition template="/template/layout.xhtml">
+		<ui:define name="content">
+			<h:form>
+				<h:panelGrid columns="2" cellpadding="5">
+					<h:outputLabel for="login" value="Login :" />
+					<p:inputText id="login" value="#{sessionSupervisor.registrationManager.id}"
+						required="true" label="login" />
+		
+					<h:outputLabel for="password" value="Password:" />
+					<p:password id="password" value="#{sessionSupervisor.registrationManager.pwd}"
+						required="true" label="password" />
+						
+					<h:outputLabel for="password2" value="Password:" />
+					<p:password id="password2" value="#{sessionSupervisor.registrationManager.pwd2}"
+						required="true" label="password2" />
+						
+				</h:panelGrid>
+				<h:commandButton action="#{sessionSupervisor.registrationManager.addPerson()}"
+					value="#{msg['button.registration']}"/>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+	<f:metadata>
+    		<f:event type="preRenderView" listener="#{sessionSupervisor.indexIfConnected()}"/>
+	</f:metadata>
 </h:body>
 </html>
