@@ -24,8 +24,10 @@
 			<h:commandButton action="#{sessionSupervisor.loginManager.login()}"
 				value="#{msg['button.connection']}"/>
 		</h:form>
+		<h:form>
 			<h:commandButton action="#{sessionSupervisor.loginManager.redirectRegistration()}"
 				value="#{msg['button.registration']}"/>
+		</h:form>
 	</c:if>
 	<c:if test="#{sessionSupervisor.loginManager.isConnected()}">
 		<h:outputLabel value="#{sessionSupervisor.connectedUser.logged.mail}"/>
