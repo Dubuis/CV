@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 import business.model.Activity;
 import business.model.Person;
@@ -37,20 +39,26 @@ public class RegistrationManager {
 	}
 	
 	public String addPerson (){
-		System.out.println("bonjour");
-		if(connectedUser.getLogged() != null) {
+		try {
+			if(connectedUser.getLogged() != null) {
+				return "";
+			}
+			if(pwd.equals(pwd2)){
+				Person P1 = new Person();
+				P1.setMail(id);
+				P1.setPassword(pwd);
+				persons.addPerson(P1);
+				return "index?faces-redirect=true";
+			}
+			FacesMessage message = new FacesMessage( "les mots de passe sont différents" );
+			FacesContext.getCurrentInstance().addMessage("erreurpwd", message );
 			return "";
 		}
-		//if (persons.getPerson(id) == null) return;
-		if(pwd.equals(pwd2)){
-			Person P1 = new Person();
-			P1.setMail(id);
-			P1.setPassword(pwd);
-			System.out.println(pwd+" | "+id);
-			persons.addPerson(P1);
-			return "index?faces-redirect=true";
+		catch (Exception e) {
+			FacesMessage message = new FacesMessage( "l'identifiant mail est déjà existant" );
+			FacesContext.getCurrentInstance().addMessage("erreurid", message );
 		}
-		return "index?faces-redirect=true";
+		return "";
 	}
 	
 	public String getId() {
