@@ -25,8 +25,8 @@ public class SessionSupervisor {
 	
 	@PostConstruct
 	public void init() {
-		cvManager = new CvManager(connectedUser, persons);
-		loginManager = new LoginManager(connectedUser, persons);
+		cvManager = new CvManager(this);
+		loginManager = new LoginManager(this);
 	}
 
 	/**
@@ -65,10 +65,10 @@ public class SessionSupervisor {
 	}
 
 	/**
-	 * @param connectedUser the connectedUser to set
+	 * @return the persons
 	 */
-	public void setConnectedUser(IConnectedUser connectedUser) {
-		this.connectedUser = connectedUser;
+	public IPersons getPersons() {
+		return persons;
 	}
 	
 	public String indexIfNotConnected() throws IOException {

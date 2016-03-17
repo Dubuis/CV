@@ -25,10 +25,10 @@ public class CvManager implements Serializable {
 	
 	IConnectedUser connectedUser;
 	
-	public CvManager(IConnectedUser connectedUser, IPersons persons) {
+	public CvManager(SessionSupervisor supervisor) {
 		super();
-		this.connectedUser = connectedUser;
-		this.persons = persons;
+		this.connectedUser = supervisor.getConnectedUser();
+		this.persons = supervisor.getPersons();
 	}
 	
 	@PostConstruct

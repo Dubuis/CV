@@ -16,10 +16,9 @@ public class LoginManager {
 	private String id;
 	private String pwd;
 	
-	public LoginManager(IConnectedUser connectedUser, IPersons persons) {
-		super();
-		this.connectedUser = connectedUser;
-		this.persons = persons;
+	public LoginManager(SessionSupervisor supervisor) {
+		this.connectedUser = supervisor.getConnectedUser();
+		this.persons = supervisor.getPersons();
 	}
 	
 	@PostConstruct
