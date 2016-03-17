@@ -68,4 +68,10 @@ public class PersonsManager extends AbstractEJB implements IPersons {
 		connectedUsers.remove(p.getMail());
 	}
 
+	@Override
+	public void addPerson(Person P){
+		dao.save(P);
+		dao.flush();
+	}
+
 }

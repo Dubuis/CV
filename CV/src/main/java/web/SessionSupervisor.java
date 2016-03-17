@@ -15,8 +15,10 @@ import web.services.interfaces.IPersons;
 @ManagedBean
 @SessionScoped
 public class SessionSupervisor {
+	
 	private CvManager cvManager;
 	private LoginManager loginManager;
+	private RegistrationManager registrationManager;
 	
 	@EJB
 	private IConnectedUser connectedUser;
@@ -27,6 +29,7 @@ public class SessionSupervisor {
 	public void init() {
 		cvManager = new CvManager(this);
 		loginManager = new LoginManager(this);
+		setRegistrationManager(new RegistrationManager(this));
 	}
 
 	/**
@@ -81,7 +84,26 @@ public class SessionSupervisor {
 		return "";
 	}
 	
+	public String indexIfConnected() throws IOException {
+		if(connectedUser.getLogged() == null) System.out.println("connected");
+		else{
+			ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+            context.redirect("index.xhtml");
+            System.out.println("redirected");
+		}
+		return "";
+	}
+	
 	public String redirectMyCv() {
 		return "myCV?faces-redirect=true";
 	}
+
+	public RegistrationManager getRegistrationManager() {
+		return registrationManager;
+	}
+
+	public void setRegistrationManager(RegistrationManager registrationManager) {
+		this.registrationManager = registrationManager;
+	}
+
 }

@@ -72,4 +72,9 @@ public class LoginManager {
 		activity.setDate(new Date(System.currentTimeMillis()));
 		connectedUser.addActivity(activity);
 	}
+	
+	public String redirectRegistration() {
+		System.out.println("coucou");
+		return "createAccount?faces-redirect=true";
+	}
 }

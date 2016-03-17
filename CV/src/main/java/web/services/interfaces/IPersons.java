@@ -15,4 +15,5 @@ public interface IPersons {
 	public boolean isConnected(String id);
 	public void connect(Person p);
 	public void disconnect(Person p);
+	public void addPerson(Person P);
 }
