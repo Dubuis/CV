@@ -8,16 +8,28 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
+<h:head>
+</h:head>
+<f:metadata>
+	<f:viewParam name="countPage" value="#{sessionSupervisor.countPage}" />
+</f:metadata>
 <h:body>
 	<ui:composition template="/template/layout.xhtml">
 		<ui:define name="content">
 			<ul>
-			<ui:repeat value="#{allPersonsManager.personsWithCv}" var="p" varStatus="loop">
+			<!-- <ui:repeat value="#{allPersonsManager.personsWithCv}" var="p" varStatus="loop">
 				<li>
 					<a href="showCV.xhtml?mail=#{p.mail}"><h:outputText value="#{p.mail}" /></a>
 				</li>
-			</ui:repeat>
+			</ui:repeat> -->
+			<c:set value="#{allPersonsManager.personsWithCv}" var="p" />
+			<c:forEach begin="#{sessionSupervisor.begin}" end="#{sessionSupervisor.end}" var="i">
+				<li><a href="showCV.xhtml?mail=#{p[i].mail}"><h:outputText value="#{p[i].mail}" /></a></li>
+			</c:forEach>
 			</ul>
+			<c:forEach begin="0" end="#{p.size()/10}" var="page">
+				<a href="index.xhtml?countPage=#{page}"><h:outputText value="#{page}"/></a>
+			</c:forEach>
 		</ui:define>
 	</ui:composition>
 </h:body>

@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -19,6 +20,10 @@ public class SessionSupervisor {
 	private CvManager cvManager;
 	private LoginManager loginManager;
 	private RegistrationManager registrationManager;
+	private int begin = 0;
+	private int end = 10;
+	@ManagedProperty("#{countPage}")
+	private int countPage = 1;
 	
 	@EJB
 	private IConnectedUser connectedUser;
@@ -74,6 +79,28 @@ public class SessionSupervisor {
 		return persons;
 	}
 	
+	/**
+	 * @return the begin
+	 */
+	public int getBegin() {
+		return countPage * 10;
+	}
+	
+	/**
+	 * @return the end
+	 */
+	public int getEnd() {
+		return countPage * 10 + 10;
+	}
+	
+	public int getCountPage() {
+		return countPage;
+	}
+	
+	public void setCountPage(int countPage) {
+		this.countPage = countPage;
+	}
+
 	public String indexIfNotConnected() throws IOException {
 		if(connectedUser.getLogged() == null) {
 			ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
